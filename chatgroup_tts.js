@@ -12,7 +12,49 @@ let IgnoreReadingIfContains =
     , "!raffle"
     , "!givepoints"
     , "Invalid TTS voice"
+    , "!join"
 ] // List of words that cause whole sentence to be ignored
+
+const availableVoices = [
+    //Dansk
+    "Polly Naja",
+    "Polly Mads",
+
+    // Deutsch
+    "Polly Marlene",
+    "Polly Hans",
+
+    // English
+    "Polly Russell",
+    "Polly Nicole",
+    "Polly Amy",
+    "Polly Brian",
+    "Polly Matthew",
+    "Polly Raveena",
+    "Polly Ivy",
+    "Polly Joey",
+    "Polly Joanna",
+    "Polly Salli",
+
+    //Español
+    "Polly Enrique",
+    "Polly Lucia",
+    "Polly Mia",
+    "Polly Penélope",
+
+    //Français
+    "Polly Chantal",
+    "Polly Léa",
+    "Polly Céline",
+    "Polly Mathieu",
+
+    //Português
+    "Polly Inês",
+    "Polly Cristiano",
+    "Polly Vitória",
+    "Polly Ricardo"
+
+];
 
 function removeEmojis(text) {
     text.replace(/\(:voice [^)]+\)/g, '');
@@ -43,7 +85,7 @@ if (storedVoice) {
 }
 else {
     if (TurnOnTTS == "yes" && !IgnoreUserList.includes(user) && !dontSpeak ){
-        Sound.playTTS(personsays, "Polly Matthew", .5 /* volume, 0-1 */)
+        const randomVoice = availableVoices[Math.floor(Math.random() * availableVoices.length)];
+        Sound.playTTS(personsays, randomVoice, .5 /* volume, 0-1 */)
     }
 }
-
